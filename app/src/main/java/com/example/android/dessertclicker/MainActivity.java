@@ -1,19 +1,21 @@
 package com.example.android.dessertclicker;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ShareCompat;
-import androidx.databinding.DataBindingUtil;
+
 import com.example.android.dessertclicker.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("MainActivity", "onCreate Called");
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         Dessert newDessert = allDesserts().get(0);
 
         for (Dessert dessert : allDesserts() ) {
-            if (dessertsSold >= dessert.getStartProductionAmount()) {
+            if (revenue >= dessert.getStartProductionAmount()) {
                 newDessert = dessert;
             }
             // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
@@ -133,6 +136,38 @@ public class MainActivity extends AppCompatActivity {
                 .getIntent();
 
         startActivity(shareIntent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Log.i("MainActivity", "onStart Called");
+        Timber.i("onStart Called");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 }
